@@ -38,61 +38,61 @@ if ($result) {
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body {
-            margin: 0 auto;
-            max-width: 800px;
-            padding: 0 20px;
-        }
+    body {
+        margin: 0 auto;
+        max-width: 800px;
+        padding: 0 20px;
+    }
 
-        .container {
-            border: 2px solid #dedede;
-            background-color: #f1f1f1;
-            border-radius: 5px;
-            padding: 10px;
-            margin: 10px 0;
-        }
+    .container {
+        border: 2px solid #dedede;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px 0;
+    }
 
-        .darker h-auto {
-            border-color: #ccc;
-            background-color: #ddd;
-        }
+    .darker h-auto {
+        border-color: #ccc;
+        background-color: #ddd;
+    }
 
-        .container::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
+    .container::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
 
-        .container img {
-            float: left;
-            max-width: 60px;
-            width: 100%;
-            margin-right: 20px;
-            border-radius: 50%;
-        }
+    .container img {
+        float: left;
+        max-width: 60px;
+        width: 100%;
+        margin-right: 20px;
+        border-radius: 50%;
+    }
 
-        .container img.right {
-            float: right;
-            margin-left: 20px;
-            margin-right: 0;
-        }
+    .container img.right {
+        float: right;
+        margin-left: 20px;
+        margin-right: 0;
+    }
 
-        .time-right {
-            float: right;
-            color: #aaa;
-        }
+    .time-right {
+        float: right;
+        color: #aaa;
+    }
 
-        .time-left {
-            float: left;
-            color: #999;
-        }
+    .time-left {
+        float: left;
+        color: #999;
+    }
 
-        .main-container {
-            height: 75vh;
-            overflow: scroll;
-            scrollbar-width: none;
-            margin-inline: auto;
-        }
+    .main-container {
+        height: 75vh;
+        overflow: scroll;
+        scrollbar-width: none;
+        margin-inline: auto;
+    }
     </style>
 
 
@@ -104,7 +104,7 @@ if ($result) {
 <body class="mt-4 mx-auto">
 
     <h2>Let's Chat</h2>
-    
+
     <div class="main-container">
 
         <div class="container h-auto">
@@ -170,28 +170,67 @@ if ($result) {
     </div>
 
     <input type="text" class="form-control" name="usermsg" id="usermsg">
-    <button class="btn btn-sm bg-primary text-white" id="submitmsg" > Send </button>
+    <button class="btn btn-sm bg-primary text-white" id="submitmsg" name="submitmsg"> Send </button>
 
 
     <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-        </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+setInterval(runFunction, 1000);
+
+function runFunction = () {
+
+    
+
+}
+ 
+
+
+
+
+
+
+
+    // Get the input field
+    var input = document.getElementById("usermsg");
+
+    // Execute a function when the user presses a key on the keyboard
+    input.addEventListener("keypress", function(event) {
+        // If the user presses the "Enter" key on the keyboard
+        if (event.key === "Enter") {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            // Trigger the button element with a click
+            document.getElementById("submitmsg").click();
+        }
+    });
+
+
+
+    $("#submitmsg").click(function() {
+        var clientmsg = $("#usermsg").val();
+        $.post("postmsg.php", {
+                text: clientmsg,
+                room: '<?php echo $roomname ?>',
+                ip: '<?php echo $_SERVER['REMOTE_ADDR']  ?>'
+            },
+
+            function(data, status) {
+                document.getElementsByClassName('#anyClass')[0].innerHTML = data;
+            });
+
+            $("#usermsg").val("");
+        return false;
+
+    });
+    </script>
+
 </body>
-
-<script type="text/javascript">
-
-var clientmsg = $('usermsg').val();
-$("#submitmsg").click(function(){
-  $.post("postmsg.php", { text: clientmsg, room: '<?php echo $roomname ?>', ip: <?php echo $_SERVER['REMOTE_ADDR']  ?>  });
-
-  function(data, status){
-    document.getElementsByClassName('#anyClass')[0].innerHTML = data;
-
-  } 
-
-});
-
-</script>
 
 </html>
