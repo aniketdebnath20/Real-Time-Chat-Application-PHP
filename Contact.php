@@ -24,9 +24,9 @@
         <header class="mb-auto">
             <div>
                 <h3 class="float-md-start mb-0">CHAT</h3>
-                <nav class="nav-bar nav">
-                    <a class="a nav-link fw-bold py-1 px-0 active  text-white-50" href="MainPage.php">Home</a>
-                    <a class="a nav-link fw-bold py-1 px-0 text-white-50" href="Feature.php">Features</a>
+                <nav class="nav d-flex justify-content-center align-content-center gap-5">
+                    <a class="a nav-link fw-bold py-1 px-0 text-white-50" href="1_page.php">Home</a>
+                    <a class="a nav-link fw-bold py-1 px-0 active text-white-50" href="Feature.php">Features</a>
                     <a class="a nav-link fw-bold py-1 px-0 text-white" aria-current="page"
                         href="Contact.php">Contact</a>
                 </nav>

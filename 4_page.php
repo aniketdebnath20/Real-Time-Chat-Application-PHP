@@ -88,7 +88,7 @@ if ($result) {
         }
 
         .main-container {
-            height: 85vh;
+            height: 75vh;
             overflow: scroll;
             scrollbar-width: none;
             margin-inline: auto;
@@ -101,12 +101,11 @@ if ($result) {
 
 </head>
 
-<body class="mt-5 mx-auto">
+<body class="mt-4 mx-auto">
 
     <h2>Let's Chat</h2>
+    
     <div class="main-container">
-
-
 
         <div class="container h-auto">
             <img src="/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
@@ -170,9 +169,29 @@ if ($result) {
 
     </div>
 
+    <input type="text" class="form-control" name="usermsg" id="usermsg">
+    <button class="btn btn-sm bg-primary text-white" id="submitmsg" > Send </button>
+
+
     <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
         </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </body>
+
+<script type="text/javascript">
+
+var clientmsg = $('usermsg').val();
+$("#submitmsg").click(function(){
+  $.post("postmsg.php", { text: clientmsg, room: '<?php echo $roomname ?>', ip: <?php echo $_SERVER['REMOTE_ADDR']  ?>  });
+
+  function(data, status){
+    document.getElementsByClassName('#anyClass')[0].innerHTML = data;
+
+  } 
+
+});
+
+</script>
 
 </html>
