@@ -108,64 +108,24 @@ if ($result) {
     <div class="main-container">
 
         <div class="container h-auto">
-            <img src="/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
-            <p>Hello. How are you today?</p>
-            <span class="time-right">11:00</span>
+            <div class="anyClass">
+                <!-- <img src="/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+                <p>Hello. How are you today?</p>
+                <span class="time-right">11:00</span> -->
+            </div>
         </div>
 
         <div class="container darker h-auto">
-            <img src="/w3images/avatar_g2.jpg" alt="Avatar" class="right" style="width:100%;">
-            <p>Hey! I'm fine. Thanks for asking!</p>
-            <span class="time-left">11:01</span>
+            <div class="anyClass">
+
+                <!-- <img src="/w3images/avatar_g2.jpg" alt="Avatar" class="right" style="width:100%;">
+                <p>Hey! I'm fine. Thanks for asking!</p>
+                <span class="time-left">11:01</span> -->
+            </div>
         </div>
 
-        <div class="container h-auto">
-            <img src="/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
-            <p>Sweet! So, what do you wanna do today?</p>
-            <span class="time-right">11:02</span>
-        </div>
+       
 
-        <div class="container darker h-auto">
-            <img src="/w3images/avatar_g2.jpg" alt="Avatar" class="right" style="width:100%;">
-            <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
-            <span class="time-left">11:05</span>
-        </div>
-
-        <div class="container darker h-auto">
-            <img src="/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
-            <p>Hello. How are you today?</p>
-            <span class="time-right">11:00</span>
-        </div>
-
-        <div class="container darker h-auto">
-            <img src="/w3images/avatar_g2.jpg" alt="Avatar" class="right" style="width:100%;">
-            <p>Hey! I'm fine. Thanks for asking!</p>
-            <span class="time-left">11:01</span>
-        </div>
-
-        <div class="container h-auto">
-            <img src="/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
-            <p>Sweet! So, what do you wanna do today?</p>
-            <span class="time-right">11:02</span>
-        </div>
-
-        <div class="container darker h-auto">
-            <img src="/w3images/avatar_g2.jpg" alt="Avatar" class="right" style="width:100%;">
-            <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
-            <span class="time-left">11:05</span>
-        </div>
-
-        <div class="container h-auto">
-            <img src="/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
-            <p>Sweet! So, what do you wanna do today?</p>
-            <span class="time-right">11:02</span>
-        </div>
-
-        <div class="container darker h-auto">
-            <img src="/w3images/avatar_g2.jpg" alt="Avatar" class="right" style="width:100%;">
-            <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
-            <span class="time-left">11:05</span>
-        </div>
 
     </div>
 
@@ -182,14 +142,19 @@ if ($result) {
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-setInterval(runFunction, 1000);
+    setInterval(runFunction, 1000);
 
-function runFunction = () {
+    function runFunction () {
 
-    
+        $.post("htcont.php", {
+                room: '<?php echo $roomname ?>'
+            },
+            function(data, status) {
+                document.getElementsByClassName("anyClass")[0].innerHTML = data;
+            }
+        )
+    }
 
-}
- 
 
 
 
@@ -225,7 +190,7 @@ function runFunction = () {
                 document.getElementsByClassName('#anyClass')[0].innerHTML = data;
             });
 
-            $("#usermsg").val("");
+        $("#usermsg").val("");
         return false;
 
     });
